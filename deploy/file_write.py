@@ -79,10 +79,23 @@ class File_writer():
 
     
     def write_extime(self, type:str):
-        self.func_file.write('    end = HAL_GetTick();\n')
-        self.func_file.write('    ' + type + '_time += (end - start);\n')
-        self.func_file.write('    ' + type + '_count++;\n')
-        self.func_file.write('    start = end;\n\n')
+        template = f'''
+    end = HAL_GetTick();
+    {type}_time += (end - start);
+
+    printf("type: {type}, time: %d, params: {{", end - start);
+    print_cmsis_nn_dims(&input_dims, "input_dims");
+    printf(", ");
+    print_cmsis_nn_dims(&output_dims, "output_dims");
+    printf(", ");
+    print_cmsis_nn_dims(&filter_dims, "filter_dims");
+    printf("}}\\n");
+
+    {type}_count++;
+    start = end;
+
+'''
+        self.func_file.write(template);
 
 
     def write_init(self, image:ndarray, max_size:int):

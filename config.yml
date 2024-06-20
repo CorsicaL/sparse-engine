@@ -1,5 +1,5 @@
 # full model_config_path: ../TinySPOS/configs/{model_config_path}/quant_dmtp_single.yml
-model_config_path: 'r312lhj6_vq84Q/qen19s8p_iQkBi'
+model_config_path: 'test_time/arch_30'
 
 # input image info
 image_path: 'input/3.npy'
@@ -8,19 +8,19 @@ image_class: 3
 # sparse_choice == 0: force dense
 # sparse_choice == 1: force sparse
 # sparse_choice == 2: self adoption
-sparse_choice: 2
+sparse_choice: 0
 
 # constant part
 # full tensor path: ../TinySPOS/{tensor_path}
 tensor_path: 'tensor/'
 
 # softmax opt
-softmax_opt: False
+softmax_opt: True
 
 # full memory_list path: ../TinySPOS/{memory_list}
 memory_list: 'statistic.yml'
 
-func_path: 'inference/Core/Src/quantization_inference.c' 
-data_path: 'inference/Core/Inc/data.h'
+func_path: 'inference/Core/Src/quantization_inference_30.c' 
+data_path: 'inference/Core/Inc/data_30.h'
 func_init: 'init/func_init.txt'
 data_init: 'init/data_init.txt'

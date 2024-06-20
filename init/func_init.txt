@@ -3,6 +3,7 @@
 #include "func.h"
 #include "stdio.h"
 #include "main.h"
+#include "utils.h"
 
 int quantization_inference(void) {
     uint32_t start, end;
